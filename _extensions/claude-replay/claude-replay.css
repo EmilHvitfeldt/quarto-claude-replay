@@ -1,0 +1,24 @@
+.claude-replay-embed {
+  margin: 1em 0;
+}
+
+.claude-replay-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #333;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Invisible fragment markers used to step the replay in revealjs */
+.reveal .cr-step {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Inside slides, don't add vertical margin (r-stretch manages layout) */
+.reveal .claude-replay-embed {
+  margin: 0;
+}

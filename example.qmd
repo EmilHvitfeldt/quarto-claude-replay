@@ -1,0 +1,16 @@
+---
+title: "claude-replay embed example"
+format: html
+---
+
+## Basic embed
+
+A [claude-replay](https://github.com/es617/claude-replay) session embedded with default options:
+
+{{< claude-replay docs/demo-replay.html >}}
+
+## Custom height and initial turn
+
+Starting at turn 2 with a smaller frame:
+
+{{< claude-replay docs/demo-replay.html height=400 turn=2 >}}

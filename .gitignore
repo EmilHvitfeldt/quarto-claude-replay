@@ -1,0 +1,7 @@
+/.quarto/
+example.html
+example-revealjs.html
+example_files/
+example-revealjs_files/
+
+**/*.quarto_ipynb
