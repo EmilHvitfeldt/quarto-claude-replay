@@ -10,6 +10,29 @@
   display: block;
 }
 
+/* Full-screen replays (claude-replay= on a slide heading) ride in reveal's
+   background layer, which is outside the scaled .slides box and so covers the
+   whole window. Same scrollbar-clipping trick as above, applied to the
+   background iframe reveal generates. */
+.reveal .slide-background.cr-bg-no-scrollbar .slide-background-content {
+  overflow: hidden;
+}
+
+.reveal .slide-background.cr-bg-no-scrollbar .slide-background-content iframe {
+  width: calc(100% + 20px);
+}
+
+/* scrollbar=false: the scrollbar belongs to the embedded document, so it can't
+   be styled from here. Instead, widen the iframe past its container and clip
+   the overflow, which hides the bar on the right without blocking scrolling. */
+.claude-replay-embed.cr-no-scrollbar {
+  overflow: hidden;
+}
+
+.claude-replay-embed.cr-no-scrollbar iframe {
+  width: calc(100% + 20px);
+}
+
 /* Invisible fragment markers used to step the replay in revealjs */
 .reveal .cr-step {
   position: absolute;

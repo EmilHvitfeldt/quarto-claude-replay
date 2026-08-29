@@ -48,6 +48,9 @@ local function replay(args, kwargs, meta)
   local turn = pandoc.utils.stringify(kwargs["turn"] or "")
   local title = pandoc.utils.stringify(kwargs["title"] or "")
   local class = pandoc.utils.stringify(kwargs["class"] or "")
+  local scrollbar = pandoc.utils.stringify(kwargs["scrollbar"] or "")
+
+  local hide_scrollbar = scrollbar == "false" or scrollbar == "no" or scrollbar == "0"
 
   if height == "" then
     height = is_reveal and "100%" or "600px"
@@ -77,6 +80,9 @@ local function replay(args, kwargs, meta)
   if is_reveal then
     wrapper_class = wrapper_class .. " r-stretch"
   end
+  if hide_scrollbar then
+    wrapper_class = wrapper_class .. " cr-no-scrollbar"
+  end
   if class ~= "" then
     wrapper_class = wrapper_class .. " " .. class
   end
@@ -90,11 +96,13 @@ local function replay(args, kwargs, meta)
     src_attr = string.format('src="%s"', url)
   end
 
+  local wrapper_style = string.format(' style="height: %s; width: %s;"', height, width)
+
   local html = string.format(
-    '<div class="%s" style="height: %s; width: %s;">' ..
+    '<div class="%s"%s>' ..
       '<iframe id="%s" %s title="%s" data-claude-replay="1" data-initial-turn="%s" loading="lazy"></iframe>' ..
     '</div>',
-    wrapper_class, height, width, id, src_attr, title,
+    wrapper_class, wrapper_style, id, src_attr, title,
     turn ~= "" and turn or "0"
   )
 

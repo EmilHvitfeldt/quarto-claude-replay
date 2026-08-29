@@ -1,0 +1,85 @@
+---
+title: "claude-replay in revealjs"
+format:
+  revealjs:
+    css: slides.css
+filters:
+  - claude-replay
+---
+
+## About this deck
+
+The next slide embeds a Claude Code session replay.
+
+Press the arrow keys to step through turns as fragments.
+
+## Stepping through a session
+
+{{< claude-replay docs/demo-replay.html >}}
+
+{{< claude-replay-step 1 >}}
+{{< claude-replay-step 2 >}}
+{{< claude-replay-step 3 >}}
+{{< claude-replay-step 4 >}}
+
+## Starting mid-session
+
+This replay starts at turn 2 and steps from there.
+
+{{< claude-replay docs/demo-replay.html height=450 turn=2 >}}
+
+{{< claude-replay-step 3 >}}
+{{< claude-replay-step 4 >}}
+
+## A different theme
+
+The same session generated with the `bubbles` theme instead of `tokyo-night`.
+
+{{< claude-replay docs/demo-replay-bubbles.html >}}
+
+{{< claude-replay-step 1 >}}
+{{< claude-replay-step 2 >}}
+{{< claude-replay-step 3 >}}
+{{< claude-replay-step 4 >}}
+
+## Matching the slide background {background-color="#1a1b26" .tokyo-night}
+
+Set the slide background to the replay theme's `--bg` (here `#1a1b26`, tokyo-night), pass `class=seamless` to drop the iframe border, and `scrollbar=false` to hide the scrollbar.
+
+{{< claude-replay docs/demo-replay.html class=seamless scrollbar=false >}}
+
+{{< claude-replay-step 1 >}}
+{{< claude-replay-step 2 >}}
+{{< claude-replay-step 3 >}}
+{{< claude-replay-step 4 >}}
+
+## Same trick, light theme {background-color="#f0f2f5" .bubbles}
+
+The bubbles replay uses `--bg: #f0f2f5`, so the slide background is set to match.
+
+{{< claude-replay docs/demo-replay-bubbles.html class=seamless scrollbar=false >}}
+
+{{< claude-replay-step 1 >}}
+{{< claude-replay-step 2 >}}
+{{< claude-replay-step 3 >}}
+{{< claude-replay-step 4 >}}
+
+## Full screen
+
+An embedded replay can only fill the slide rectangle, which revealjs letterboxes inside the window. Putting the replay on the heading instead makes it a slide background, which covers the whole screen:
+
+``` markdown
+## {claude-replay="docs/demo-replay.html"}
+
+{{< claude-replay-step 1 >}}
+```
+
+The next slide does exactly that.
+
+## {claude-replay="docs/demo-replay.html"}
+
+{{< claude-replay-step 1 >}}
+{{< claude-replay-step 2 >}}
+{{< claude-replay-step 3 >}}
+{{< claude-replay-step 4 >}}
+

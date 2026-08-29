@@ -1,0 +1,12 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - example.qmd
+  resources:
+    - docs/*.html
+
+website:
+  title: "claude-replay"
+  site-url: "https://emilhvitfeldt.github.io/quarto-claude-replay/"

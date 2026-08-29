@@ -1,0 +1,17 @@
+/* Drop the iframe frame so the replay blends into the slide background. */
+.reveal .claude-replay-embed.seamless iframe {
+  border: none;
+  border-radius: 0;
+}
+
+/* Light-on-dark slide text, to match the tokyo-night replay theme. */
+.reveal section.tokyo-night,
+.reveal section.tokyo-night h2 {
+  color: #c0caf5;
+}
+
+/* Dark-on-light slide text, to match the bubbles replay theme. */
+.reveal section.bubbles,
+.reveal section.bubbles h2 {
+  color: #1c1e21;
+}

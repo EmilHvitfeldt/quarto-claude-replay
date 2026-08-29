@@ -1,7 +1,10 @@
 /.quarto/
+/_site/
 example.html
-example-revealjs.html
+index.html
 example_files/
-example-revealjs_files/
+index_files/
 
 **/*.quarto_ipynb
+
+/.luarc.json

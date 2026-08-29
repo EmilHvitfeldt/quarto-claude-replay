@@ -41,6 +41,7 @@ Options:
 | `turn`   | `0` (splash screen)                     | Turn to show initially                    |
 | `title`  | `Claude Code session replay`            | Iframe `title` attribute (accessibility)  |
 | `class`  |                                         | Extra CSS classes on the wrapper          |
+| `scrollbar` | `true`                               | `false` hides the replay's scrollbar      |
 
 ```markdown
 {{< claude-replay replay.html height=400 turn=2 >}}
@@ -70,9 +71,61 @@ Notes:
 - Only turn seeking is exposed by the claude-replay player; play/pause/speed can't be driven from fragments.
 - Viewers can still interact with the replay directly (scroll, play, expand tool calls). If they click inside the iframe, keyboard focus moves there; clicking outside returns arrow-key control to the deck.
 
+### Matching the slide background
+
+A replay carries its own theme background, so by default it reads as a panel sitting on the slide. To make it blend in, set the slide background to the replay theme's `--bg` (look it up at the top of the generated replay file, e.g. `#1a1b26` for tokyo-night, `#f0f2f5` for bubbles) and drop the iframe border:
+
+```markdown
+## My session {background-color="#1a1b26"}
+
+{{< claude-replay replay.html class=seamless scrollbar=false >}}
+```
+
+```css
+.reveal .claude-replay-embed.seamless iframe {
+  border: none;
+  border-radius: 0;
+}
+```
+
+Remember to set a matching slide text color for the heading and body copy. See [slides.css](slides.css) for the version used in the example deck.
+
+### Full-screen replays
+
+An embedded replay is confined to the slide rectangle, which reveal.js letterboxes inside the browser window. To have a replay cover the entire screen, put it on the slide heading instead:
+
+```markdown
+---
+filters:
+  - claude-replay
+---
+
+## {claude-replay="replay.html"}
+
+{{< claude-replay-step 1 >}}
+{{< claude-replay-step 2 >}}
+```
+
+This expands to reveal.js's own `background-iframe`, whose layer sits outside the scaled slide container and so fills the window edge to edge. Fragment steps on the slide drive it exactly like an embedded replay.
+
+| Attribute      | Default | Description                            |
+| -------------- | ------- | -------------------------------------- |
+| `claude-replay`|         | Path to the replay file                 |
+| `turn`         | `0`     | Turn to show initially                  |
+| `scrollbar`    | `false` | `true` keeps the replay's scrollbar     |
+
+The `filters: - claude-replay` entry is required: Quarto loads shortcodes from an extension automatically, but filters only on request. Use a title-less heading (`##` with just the attributes) so nothing is drawn over the replay, and pick a replay theme whose background suits your deck, since the replay covers the slide background entirely.
+
 ## Example
 
-See [example.qmd](example.qmd) and [example-revealjs.qmd](example-revealjs.qmd) for complete examples. The demo replay is generated from claude-replay's public demo session.
+[index.qmd](index.qmd) is a revealjs deck covering every feature above, published at <https://emilhvitfeldt.github.io/quarto-claude-replay/>. [example.qmd](example.qmd) is the plain HTML equivalent.
+
+The demo replays under `docs/` are generated from claude-replay's public demo session, in two themes:
+
+```bash
+npx claude-replay docs/demo-session.jsonl --title "Replay — docs" -o docs/demo-replay.html
+npx claude-replay docs/demo-session.jsonl --title "Replay — docs" --theme bubbles -o docs/demo-replay-bubbles.html
+```
 
 ## License
 
