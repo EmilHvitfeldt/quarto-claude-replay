@@ -1,0 +1,30 @@
+{
+  "Claude Replay embed": {
+    "prefix": "claude-replay:embed",
+    "body": [
+      "{{< claude-replay ${1:replay.html} >}}"
+    ],
+    "description": "Embed a claude-replay session replay."
+  },
+  "Claude Replay with turn stepping": {
+    "prefix": "claude-replay:steps",
+    "body": [
+      "{{< claude-replay ${1:replay.html} >}}",
+      "",
+      "{{< claude-replay-step 1 >}}",
+      "{{< claude-replay-step 2 >}}",
+      "{{< claude-replay-step ${2:3} >}}"
+    ],
+    "description": "Embed a replay in revealjs with fragment steps that advance it turn by turn."
+  },
+  "Claude Replay full-screen slide": {
+    "prefix": "claude-replay:fullscreen",
+    "body": [
+      "## {claude-replay=\"${1:replay.html}\"}",
+      "",
+      "{{< claude-replay-step 1 >}}",
+      "{{< claude-replay-step ${2:2} >}}"
+    ],
+    "description": "Revealjs slide whose background is a full-screen replay. Requires claude-replay in the document's filters."
+  }
+}

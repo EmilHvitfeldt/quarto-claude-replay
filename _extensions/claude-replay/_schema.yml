@@ -1,0 +1,50 @@
+$schema: https://m.canouil.dev/quarto-wizard/assets/schema/v2/extension-schema.json
+
+shortcodes:
+  claude-replay:
+    description: "Embed a claude-replay session replay."
+    arguments:
+      - name: src
+        type: string
+        required: true
+        description: "Path to the replay HTML file, relative to the document."
+    attributes:
+      height:
+        type: string
+        description: "Height of the embed. Bare numbers are treated as pixels. Defaults to 600px in documents and 100% in revealjs."
+      width:
+        type: string
+        description: "Width of the embed. Bare numbers are treated as pixels. Defaults to 100%."
+      turn:
+        type: number
+        description: "Turn to show initially. Defaults to 0, the splash screen."
+      title:
+        type: string
+        description: "Iframe title attribute, used by screen readers."
+      class:
+        type: string
+        description: "Extra CSS classes to put on the embed wrapper."
+      scrollbar:
+        type: boolean
+        default: true
+        description: "Set to false to hide the replay's scrollbar."
+  claude-replay-step:
+    description: "Invisible revealjs fragment that advances the replay on this slide to a given turn."
+    arguments:
+      - name: turn
+        type: number
+        required: true
+        description: "Turn to advance the replay to when this fragment is shown."
+
+attributes:
+  Header:
+    claude-replay:
+      type: string
+      description: "Path to a replay HTML file, shown full-screen as the revealjs slide background. Requires claude-replay in the document's filters."
+    turn:
+      type: number
+      description: "Turn the full-screen replay starts on. Defaults to 0, the splash screen."
+    scrollbar:
+      type: boolean
+      default: false
+      description: "Set to true to keep the full-screen replay's scrollbar."
